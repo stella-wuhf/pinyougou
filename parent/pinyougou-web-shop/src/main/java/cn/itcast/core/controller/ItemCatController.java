@@ -1,8 +1,12 @@
 package cn.itcast.core.controller;
 
 import cn.itcast.core.pojo.item.ItemCat;
+import cn.itcast.core.pojo.item.ItemCatSt;
 import cn.itcast.core.service.ItemCatService;
 import com.alibaba.dubbo.config.annotation.Reference;
+import entity.Result;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +24,9 @@ public class ItemCatController {
 
     /*查询商品分类,根据父id查询全部的子分类*/
     @RequestMapping("findByParentId")
-    public List<ItemCat> findByParentId(Long parentId){
-        return itemCatService.findByParentId(parentId);
+    public List<ItemCatSt> findByParentId(Long parentId){
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        return itemCatService.findByParentIdst(parentId,name);
     }
 
     /*查询一个分类*/
@@ -36,4 +41,16 @@ public class ItemCatController {
         return itemCatService.findAll();
     }
 
+    @RequestMapping("add")
+    public Result add(@RequestBody ItemCatSt itemCatSt){
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        itemCatSt.setSellerId(name);
+//        itemCatSt.setParentId(parentId);
+        try {
+            itemCatService.add(itemCatSt);
+            return new Result(true,"成功");
+        } catch (Exception e) {
+            return new Result(false,"失败");
+        }
+    }
 }

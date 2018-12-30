@@ -1,9 +1,11 @@
 package cn.itcast.core.service;
 
 import cn.itcast.core.dao.item.ItemCatDao;
-import cn.itcast.core.pojo.item.Item;
+import cn.itcast.core.dao.item.ItemCatStDao;
 import cn.itcast.core.pojo.item.ItemCat;
 import cn.itcast.core.pojo.item.ItemCatQuery;
+import cn.itcast.core.pojo.item.ItemCatSt;
+import cn.itcast.core.pojo.item.ItemCatStQuery;
 import com.alibaba.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -51,5 +53,26 @@ public class ItemCatServiceImpl implements ItemCatService {
     @Override
     public List<ItemCat> findAll() {
         return itemCatDao.selectByExample(null);
+    }
+
+    /**
+     * 商家申请
+     * @param parentId
+     * @return
+     */
+    @Autowired
+    private ItemCatStDao itemCatStDao;
+    @Override
+    public List<ItemCatSt> findByParentIdst(Long parentId, String name) {
+        ItemCatStQuery query=new ItemCatStQuery();
+       query.createCriteria().andParentIdEqualTo(parentId).andSellerIdEqualTo(name);
+        List<ItemCatSt> itemCatSts = itemCatStDao.selectByExample(query);
+        return itemCatSts;
+    }
+
+    @Override
+    public void add(ItemCatSt itemCatSt) {
+        itemCatSt.setStatus("0");
+        itemCatStDao.insertSelective(itemCatSt);
     }
 }

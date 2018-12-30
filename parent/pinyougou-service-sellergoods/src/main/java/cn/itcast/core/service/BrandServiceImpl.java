@@ -1,8 +1,12 @@
 package cn.itcast.core.service;
 
+
 import cn.itcast.core.dao.good.BrandDao;
+import cn.itcast.core.dao.good.BrandstDao;
 import cn.itcast.core.pojo.good.Brand;
 import cn.itcast.core.pojo.good.BrandQuery;
+import cn.itcast.core.pojo.good.Brandst;
+import cn.itcast.core.pojo.good.BrandstQuery;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -93,6 +97,78 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public List<Map> selectOptionList() {
         return brandDao.selectOptionList();
+    }
+
+
+    /**
+     * 商家品牌申请查询
+     * @param pageNum
+     * @param pageSize
+     * @param brand
+     * @return
+     */
+    @Autowired
+    private BrandstDao brandstDao;
+    @Override
+    public PageResult searchStaus(Integer pageNum, Integer pageSize, Brandst brandst) {
+        PageHelper.startPage(pageNum,pageSize);
+        BrandstQuery query=new BrandstQuery();
+        BrandstQuery.Criteria criteria = query.createCriteria();
+        criteria.andSellerIdEqualTo(brandst.getSellerId());
+        if(null!=brandst.getStatus()&&!"".equals(brandst.getStatus().trim())){
+            criteria.andStatusEqualTo(brandst.getStatus().trim());
+        }
+        //判断品牌名不为空,且不是空格
+        if (null != brandst.getName() && !"".equals(brandst.getName().trim())) {
+            criteria.andNameLike("%" + brandst.getName().trim() + "%");
+        }
+        //判断品牌首字母不为空,且不是空格
+        if (null != brandst.getFirstChar() && !"".equals(brandst.getFirstChar().trim())) {
+            criteria.andFirstCharEqualTo(brandst.getFirstChar().trim());
+        }
+        Page<Brandst> page = (Page<Brandst>) brandstDao.selectByExample(query);
+        return new PageResult(page.getTotal(), page.getResult());
+
+    }
+
+    /**
+     * 添加审核品牌
+     * @param
+     */
+    @Override
+    public void addStaus(Brandst brandst) {
+        brandst.setStatus("0");
+        brandstDao.insertSelective(brandst);
+    }
+
+    /**
+     * 删除
+     * @param ids
+     */
+    @Override
+    public void delestu(Long[] ids) {
+
+        BrandstQuery query=new BrandstQuery();
+        query.createCriteria().andIdIn(Arrays.asList(ids));
+        brandstDao.deleteByExample(query);
+
+    }
+
+    @Override
+    public Brandst findOnest(Long id) {
+        return brandstDao.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void updatest(Brandst brandst) {
+        brandstDao.updateByPrimaryKeySelective(brandst);
+    }
+
+    @Override
+    public List<Map> selectOptionListSt(String name) {
+
+
+        return  brandstDao.selectOptionListSt(name);
     }
 
 }

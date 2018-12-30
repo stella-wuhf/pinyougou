@@ -1,16 +1,16 @@
 package cn.itcast.core.controller;
 
-import cn.itcast.core.pojo.template.TypeTemplate;
+import cn.itcast.core.pojo.template.TypeTemplateSt;
 import cn.itcast.core.service.TypeTemplateService;
 import com.alibaba.dubbo.config.annotation.Reference;
 import entity.PageResult;
 import entity.Result;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 模板管理
@@ -23,15 +23,19 @@ public class TypeTemplateController {
 
     /*分页查询-带条件*/
     @RequestMapping("search")
-    public PageResult search(Integer page, Integer rows, @RequestBody TypeTemplate tt){
-        return typeTemplateService.search(page,rows,tt);
+    public PageResult search(Integer page, Integer rows, @RequestBody TypeTemplateSt tt){
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        tt.setSellerId(name);
+        return typeTemplateService.searchst(page,rows,tt);
     }
 
     /*增加模板*/
     @RequestMapping("add")
-    public Result add(@RequestBody TypeTemplate tt){
+    public Result add(@RequestBody TypeTemplateSt tt){
         try {
-            typeTemplateService.add(tt);
+            String name = SecurityContextHolder.getContext().getAuthentication().getName();
+            tt.setSellerId(name);
+            typeTemplateService.addst(tt);
             return new Result(true,"保存成功");
         } catch (Exception e) {
            // e.printStackTrace();
@@ -41,9 +45,9 @@ public class TypeTemplateController {
 
     /*修改模板*/
     @RequestMapping("update")
-    public Result update(@RequestBody TypeTemplate tt){
+    public Result update(@RequestBody TypeTemplateSt tt){
         try {
-            typeTemplateService.update(tt);
+            typeTemplateService.updatest(tt);
             return new Result(true,"修改成功");
         } catch (Exception e) {
             // e.printStackTrace();
@@ -53,15 +57,15 @@ public class TypeTemplateController {
 
     /*查询一个模板*/
     @RequestMapping("findOne")
-    public TypeTemplate findOne(Long id){
-        return typeTemplateService.findOne(id);
+    public TypeTemplateSt findOne(Long id){
+        return typeTemplateService.findOnest(id);
     }
 
     /*删除模板*/
     @RequestMapping("delete")
     public Result delete(Long[] ids){
         try {
-            typeTemplateService.delete(ids);
+            typeTemplateService.deletest(ids);
             return new Result(true,"删除成功");
         } catch (Exception e) {
             // e.printStackTrace();
@@ -69,10 +73,16 @@ public class TypeTemplateController {
         }
     }
 
-    /*根据模板id查询规格列表,返回值是List<Map>*/
-    @RequestMapping("findBySpecList")
-    public List<Map> findBySpecList(Long id){
-        return typeTemplateService.findBySpecList(id);
+//    /*根据模板id查询规格列表,返回值是List<Map>*/
+//    @RequestMapping("findBySpecList")
+//    public List<Map> findBySpecList(Long id){
+//        return typeTemplateService.findBySpecList(id);
+//    }
+
+    @RequestMapping("findOptionList")
+    public List<TypeTemplateSt> findOptionList(){
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        return typeTemplateService.findOptionList(name);
     }
 
 }

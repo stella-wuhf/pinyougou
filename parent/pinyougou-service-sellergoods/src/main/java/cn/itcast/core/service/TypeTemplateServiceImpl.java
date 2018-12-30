@@ -2,10 +2,13 @@ package cn.itcast.core.service;
 
 import cn.itcast.core.dao.specification.SpecificationOptionDao;
 import cn.itcast.core.dao.template.TypeTemplateDao;
+import cn.itcast.core.dao.template.TypeTemplateStDao;
 import cn.itcast.core.pojo.specification.SpecificationOption;
 import cn.itcast.core.pojo.specification.SpecificationOptionQuery;
 import cn.itcast.core.pojo.template.TypeTemplate;
 import cn.itcast.core.pojo.template.TypeTemplateQuery;
+import cn.itcast.core.pojo.template.TypeTemplateSt;
+import cn.itcast.core.pojo.template.TypeTemplateStQuery;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
@@ -113,7 +116,69 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
     }
 
     //查询所有
+
     public List<TypeTemplate> findAll(){
        return typeTemplateDao.selectByExample(null);
+    }
+
+    /**
+     * 商家后台申请
+     * @param page
+     * @param rows
+     * @param tt
+     * @return
+     */
+    @Autowired
+    private TypeTemplateStDao typeTemplateStDao;
+    @Override
+    public PageResult searchst(Integer page, Integer rows, TypeTemplateSt tt) {
+       PageHelper.startPage(page,rows);
+
+        TypeTemplateStQuery query=new TypeTemplateStQuery();
+        TypeTemplateStQuery.Criteria criteria = query.createCriteria();
+        criteria.andSellerIdEqualTo(tt.getSellerId());
+        if (null!=tt.getStatus()&&!"".equals(tt.getStatus().trim())){
+          criteria.andStatusEqualTo(tt.getStatus().trim())  ;
+        }
+        if (null != tt.getName() && !"".equals(tt.getName().trim())) {
+            criteria.andNameLike("%" + tt.getName().trim() + "%");
+        }
+        Page<TypeTemplateSt> p = (Page<TypeTemplateSt>) typeTemplateStDao.selectByExample(query);
+
+        return new PageResult(p.getTotal(), p.getResult());
+    }
+
+    @Override
+    public void addst(TypeTemplateSt tt) {
+        tt.setStatus("0");
+        typeTemplateStDao.insertSelective(tt);
+    }
+
+    @Override
+    public void updatest(TypeTemplateSt tt) {
+        typeTemplateStDao.updateByPrimaryKeySelective(tt);
+    }
+
+    @Override
+    public TypeTemplateSt findOnest(Long id) {
+     return    typeTemplateStDao.selectByPrimaryKey(id);
+
+    }
+
+    @Override
+    public void deletest(Long[] ids) {
+        TypeTemplateStQuery query=new TypeTemplateStQuery();
+        query.createCriteria().andIdIn(Arrays.asList(ids));
+        typeTemplateStDao.deleteByExample(query);
+
+    }
+
+    @Override
+    public List<TypeTemplateSt> findOptionList(String name) {
+//        return typeTemplateStDao.findOptionList(name);
+        TypeTemplateStQuery query=new TypeTemplateStQuery();
+        query.createCriteria().andSellerIdEqualTo(name);
+        List<TypeTemplateSt> list = typeTemplateStDao.selectByExample(query);
+        return list;
     }
 }

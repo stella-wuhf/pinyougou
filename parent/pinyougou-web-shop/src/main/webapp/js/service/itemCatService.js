@@ -1,5 +1,5 @@
 //服务层
-app.service('itemCatService',function($http){
+app.service('itemCatServices',function($http){
 	    	
 	//读取列表数据绑定到表单中
 	this.findAll=function(){
@@ -15,7 +15,7 @@ app.service('itemCatService',function($http){
 	}
 	//增加 
 	this.add=function(entity){
-		return  $http.post('../itemCat/add.do',entity );
+		return  $http.post('../itemCat/add.do?',entity);
 	}
 	//修改 
 	this.update=function(entity){

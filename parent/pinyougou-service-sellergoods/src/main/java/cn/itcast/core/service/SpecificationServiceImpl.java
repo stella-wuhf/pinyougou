@@ -2,16 +2,16 @@ package cn.itcast.core.service;
 
 import cn.itcast.core.dao.specification.SpecificationDao;
 import cn.itcast.core.dao.specification.SpecificationOptionDao;
-import cn.itcast.core.pojo.specification.Specification;
-import cn.itcast.core.pojo.specification.SpecificationOption;
-import cn.itcast.core.pojo.specification.SpecificationOptionQuery;
-import cn.itcast.core.pojo.specification.SpecificationQuery;
+import cn.itcast.core.dao.specification.SpecificationOptionStDao;
+import cn.itcast.core.dao.specification.SpecificationStDao;
+import cn.itcast.core.pojo.specification.*;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import entity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import pojogroup.SpecificationStVo;
 import pojogroup.SpecificationVo;
 
 import java.util.List;
@@ -132,5 +132,106 @@ public class SpecificationServiceImpl implements SpecificationService {
     @Override
     public List<Map> selectOptionList() {
         return specificationDao.selectOptionList();
+    }
+/**
+ * 后台商家
+ */
+    /**
+     * 查询商家规格申请
+     * @param page
+     * @param rows
+     * @param specificationSt
+     * @return
+     */
+    @Autowired
+    private SpecificationStDao specificationStDao;
+    @Autowired
+    private SpecificationOptionStDao specificationOptionStDao;
+    @Override
+    public PageResult searchst(Integer page, Integer rows, SpecificationSt specificationSt) {
+        //分页插件
+        PageHelper.startPage(page, rows);
+
+        //准备条件
+        SpecificationStQuery specificationQuery=new SpecificationStQuery();
+        SpecificationStQuery.Criteria criteria = specificationQuery.createCriteria();
+        criteria.andSellerIdEqualTo(specificationSt.getSellerId());
+        if (null!=specificationSt.getStatus()&&!"".equals(specificationSt.getStatus().trim())){
+            criteria.andStatusEqualTo(specificationSt.getStatus().trim());
+        }
+
+        if (null != specificationSt.getSpecName() && !"".equals(specificationSt.getSpecName().trim())) {
+            criteria.andSpecNameLike("%" + specificationSt.getSpecName().trim() + "%");
+        }
+
+        Page<SpecificationSt> p = (Page<SpecificationSt>) specificationStDao.selectByExample(specificationQuery);
+        return new PageResult(p.getTotal(), p.getResult());
+    }
+
+    @Override
+    public void addst(SpecificationStVo specificationStVo,String name) {
+        SpecificationSt specificationSt = specificationStVo.getSpecificationSt();
+        specificationSt.setSellerId(name);
+        specificationSt.setStatus("0");
+        specificationStDao.insertSelective(specificationSt);
+        Long id = specificationSt.getId();
+        List<SpecificationOptionSt> list = specificationStVo.getSpecificationOptionStList();
+        for (SpecificationOptionSt st : list) {
+         st.setSpecId(id);
+         st.setSellerId(name);
+         st.setStatus("0");
+         specificationOptionStDao.insertSelective(st);
+        }
+    }
+    @Override
+    public void updatest(SpecificationStVo specificationStVo) {
+        SpecificationSt specificationSt = specificationStVo.getSpecificationSt();
+        specificationStDao.updateByPrimaryKey(specificationSt);
+        Long id = specificationSt.getId();
+        List<SpecificationOptionSt> list = specificationStVo.getSpecificationOptionStList();
+        SpecificationOptionStQuery query=new SpecificationOptionStQuery();
+        SpecificationOptionStQuery.Criteria criteria = query.createCriteria();
+        criteria.andSpecIdEqualTo(id);
+        specificationOptionStDao.deleteByExample(query);
+        String name = specificationSt.getSellerId();
+        for (SpecificationOptionSt st : list) {
+            st.setSpecId(id);
+            st.setSellerId(name);
+            st.setStatus("0");
+            specificationOptionStDao.insertSelective(st);
+        }
+    }
+
+
+    @Override
+    public SpecificationStVo findOnest(Long id) {
+        SpecificationStVo vo = new SpecificationStVo();
+        SpecificationSt specificationSt = specificationStDao.selectByPrimaryKey(id);
+        vo.setSpecificationSt(specificationSt);
+        SpecificationOptionStQuery query=new SpecificationOptionStQuery();
+        query.createCriteria().andSpecIdEqualTo(id);
+        query.setOrderByClause("orders desc");
+        List<SpecificationOptionSt> list = specificationOptionStDao.selectByExample(query);
+        vo.setSpecificationOptionStList(list);
+        return vo;
+
+    }
+    //    @Autowired
+//    private SpecificationStDao specificationStDao;
+//    @Autowired
+//    private SpecificationOptionStDao specificationOptionStDao;
+    @Override
+    public void deletest(Long[] ids) {
+        for (Long id : ids) {
+            specificationStDao.deleteByPrimaryKey(id);
+            SpecificationOptionStQuery query=new SpecificationOptionStQuery();
+            query.createCriteria().andSpecIdEqualTo(id);
+            specificationOptionStDao.deleteByExample(query);
+        }
+    }
+
+    @Override
+    public List<Map> selectOptionListst(String name) {
+        return specificationStDao.selectOptionListst(name);
     }
 }
