@@ -6,71 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e352446d-6356-4744-b000-472fe7927bcd" name="Default" comment="删除测试文件">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_simple_1_7_21.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-dao/src/main/java/cn/itcast/core/dao/good/BrandstDao.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-dao/src/main/java/cn/itcast/core/dao/item/ItemCatStDao.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-dao/src/main/java/cn/itcast/core/dao/specification/SpecificationOptionStDao.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-dao/src/main/java/cn/itcast/core/dao/specification/SpecificationStDao.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-dao/src/main/java/cn/itcast/core/dao/template/TypeTemplateStDao.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-dao/src/main/resources/cn/itcast/core/dao/good/BrandstDao.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-dao/src/main/resources/cn/itcast/core/dao/item/ItemCatStDao.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-dao/src/main/resources/cn/itcast/core/dao/specification/SpecificationOptionStDao.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-dao/src/main/resources/cn/itcast/core/dao/specification/SpecificationStDao.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-dao/src/main/resources/cn/itcast/core/dao/template/TypeTemplateStDao.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-pojo/src/main/java/cn/itcast/core/pojo/good/Brandst.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-pojo/src/main/java/cn/itcast/core/pojo/good/BrandstQuery.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-pojo/src/main/java/cn/itcast/core/pojo/item/ItemCatSt.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-pojo/src/main/java/cn/itcast/core/pojo/item/ItemCatStQuery.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-pojo/src/main/java/cn/itcast/core/pojo/specification/SpecificationOptionSt.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-pojo/src/main/java/cn/itcast/core/pojo/specification/SpecificationOptionStQuery.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-pojo/src/main/java/cn/itcast/core/pojo/specification/SpecificationSt.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-pojo/src/main/java/cn/itcast/core/pojo/specification/SpecificationStQuery.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-pojo/src/main/java/cn/itcast/core/pojo/template/TypeTemplateSt.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-pojo/src/main/java/cn/itcast/core/pojo/template/TypeTemplateStQuery.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-pojo/src/main/java/pojogroup/SpecificationStVo.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/java/cn/itcast/core/controller/BrandController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/java/cn/itcast/core/controller/SpecificationController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/admin/brand.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/admin/item_cat.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/admin/specification.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/admin/type_template.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/js/controller/brandController.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/js/controller/itemCatController.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/js/controller/specificationController.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/js/controller/specificationOptionController.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/js/controller/typeTemplateController.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/js/service/brandService.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/js/service/specificationOptionService.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/js/service/specificationService.js" />
+    <list default="true" id="e352446d-6356-4744-b000-472fe7927bcd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/parent/parent.iml" afterPath="$PROJECT_DIR$/parent/parent.iml" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-common/pinyougou-common.iml" afterPath="$PROJECT_DIR$/parent/pinyougou-common/pinyougou-common.iml" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-dao/pinyougou-dao.iml" afterPath="$PROJECT_DIR$/parent/pinyougou-dao/pinyougou-dao.iml" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-interface/pinyougou-interface.iml" afterPath="$PROJECT_DIR$/parent/pinyougou-interface/pinyougou-interface.iml" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-interface/src/main/java/cn/itcast/core/service/BrandService.java" afterPath="$PROJECT_DIR$/parent/pinyougou-interface/src/main/java/cn/itcast/core/service/BrandService.java" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-interface/src/main/java/cn/itcast/core/service/ItemCatService.java" afterPath="$PROJECT_DIR$/parent/pinyougou-interface/src/main/java/cn/itcast/core/service/ItemCatService.java" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-interface/src/main/java/cn/itcast/core/service/SpecificationService.java" afterPath="$PROJECT_DIR$/parent/pinyougou-interface/src/main/java/cn/itcast/core/service/SpecificationService.java" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-interface/src/main/java/cn/itcast/core/service/TypeTemplateService.java" afterPath="$PROJECT_DIR$/parent/pinyougou-interface/src/main/java/cn/itcast/core/service/TypeTemplateService.java" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-pojo/pinyougou-pojo.iml" afterPath="$PROJECT_DIR$/parent/pinyougou-pojo/pinyougou-pojo.iml" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-service-buyer/pinyougou-service-buyer.iml" afterPath="$PROJECT_DIR$/parent/pinyougou-service-buyer/pinyougou-service-buyer.iml" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-service-page/pinyougou-service-page.iml" afterPath="$PROJECT_DIR$/parent/pinyougou-service-page/pinyougou-service-page.iml" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-service-search/pinyougou-service-search.iml" afterPath="$PROJECT_DIR$/parent/pinyougou-service-search/pinyougou-service-search.iml" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-service-sellergoods/pinyougou-service-sellergoods.iml" afterPath="$PROJECT_DIR$/parent/pinyougou-service-sellergoods/pinyougou-service-sellergoods.iml" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-service-sellergoods/src/main/java/cn/itcast/core/service/BrandServiceImpl.java" afterPath="$PROJECT_DIR$/parent/pinyougou-service-sellergoods/src/main/java/cn/itcast/core/service/BrandServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-service-sellergoods/src/main/java/cn/itcast/core/service/ItemCatServiceImpl.java" afterPath="$PROJECT_DIR$/parent/pinyougou-service-sellergoods/src/main/java/cn/itcast/core/service/ItemCatServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-service-sellergoods/src/main/java/cn/itcast/core/service/SpecificationServiceImpl.java" afterPath="$PROJECT_DIR$/parent/pinyougou-service-sellergoods/src/main/java/cn/itcast/core/service/SpecificationServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-service-sellergoods/src/main/java/cn/itcast/core/service/TypeTemplateServiceImpl.java" afterPath="$PROJECT_DIR$/parent/pinyougou-service-sellergoods/src/main/java/cn/itcast/core/service/TypeTemplateServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-service-user/pinyougou-service-user.iml" afterPath="$PROJECT_DIR$/parent/pinyougou-service-user/pinyougou-service-user.iml" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-web-manager/pinyougou-web-manager.iml" afterPath="$PROJECT_DIR$/parent/pinyougou-web-manager/pinyougou-web-manager.iml" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-web-portal/pinyougou-web-portal.iml" afterPath="$PROJECT_DIR$/parent/pinyougou-web-portal/pinyougou-web-portal.iml" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-web-shop/pinyougou-web-shop.iml" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/pinyougou-web-shop.iml" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/java/cn/itcast/core/controller/ItemCatController.java" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/java/cn/itcast/core/controller/ItemCatController.java" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/java/cn/itcast/core/controller/TypeTemplateController.java" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/java/cn/itcast/core/controller/TypeTemplateController.java" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/admin/index.html" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/admin/index.html" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/js/service/itemCatService.js" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/js/service/itemCatService.js" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/js/service/typeTemplateService.js" afterPath="$PROJECT_DIR$/parent/pinyougou-web-shop/src/main/webapp/js/service/typeTemplateService.js" />
-      <change beforePath="$PROJECT_DIR$/parent/pinyougou-web-user/pinyougou-web-user.iml" afterPath="$PROJECT_DIR$/parent/pinyougou-web-user/pinyougou-web-user.iml" />
     </list>
     <ignored path="$PROJECT_DIR$/parent/pinyougou-pojo/target/" />
     <ignored path="$PROJECT_DIR$/parent/pinyougou-web-portal/target/" />
@@ -172,8 +109,8 @@
     <option name="vmOptions" value="-DarchetypeCatalog=internal" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="575" />
-    <option name="y" value="244" />
+    <option name="x" value="558" />
+    <option name="y" value="186" />
     <option name="width" value="1253" />
     <option name="height" value="885" />
   </component>
@@ -611,15 +548,23 @@
       <workItem from="1546161614703" duration="2779000" />
       <workItem from="1546164843356" duration="1111000" />
       <workItem from="1546165977163" duration="69000" />
-      <workItem from="1546166533539" duration="395000" />
+      <workItem from="1546166533539" duration="793000" />
     </task>
+    <task id="LOCAL-00001" summary="商家品牌，规格，分类，模板申请">
+      <created>1546167239767</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1546167239767</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5675000" />
+    <option name="totallyTimeSpent" value="6073000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="575" y="244" width="1253" height="885" extended-state="0" />
+    <frame x="558" y="186" width="1253" height="885" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39976415" sideWeight="0.50214595" order="7" side_tool="true" content_ui="tabs" />
@@ -693,7 +638,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="删除测试文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="删除测试文件" />
+    <MESSAGE value="商家品牌，规格，分类，模板申请" />
+    <option name="LAST_COMMIT_MESSAGE" value="商家品牌，规格，分类，模板申请" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -708,6 +654,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="7" column="51" lean-forward="false" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -747,6 +694,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -754,6 +702,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -761,6 +710,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -768,6 +718,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -972,6 +923,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="7" column="51" lean-forward="false" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -980,6 +932,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -987,6 +940,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -994,6 +948,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1008,6 +963,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
           <caret line="371" column="32" lean-forward="false" selection-start-line="371" selection-start-column="32" selection-end-line="371" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
