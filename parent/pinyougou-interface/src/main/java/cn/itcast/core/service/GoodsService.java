@@ -16,4 +16,12 @@ public interface GoodsService {
     void updateStatus(Long[] ids, String status);
 
     void delete(Long[] ids);
+
+    /**
+     * 商家上架下架管理
+     * @param ids
+     * @param dStatus
+     * @param name
+     */
+    void updateDelStatus(Long[] ids, String dStatus, String name);
 }

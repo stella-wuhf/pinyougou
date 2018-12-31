@@ -38,6 +38,7 @@ public class ItemSearchListener implements MessageListener {
             List<Item> itemList = itemDao.selectByExample(itemQuery);
             //将库存对象集合 保存到索引库中
             solrTemplate.saveBeans(itemList,1000);
+
         }catch (Exception e){
             e.printStackTrace();
         }

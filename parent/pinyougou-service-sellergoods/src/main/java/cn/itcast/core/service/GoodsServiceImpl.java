@@ -26,10 +26,7 @@ import org.springframework.jms.core.MessageCreator;
 import org.springframework.transaction.annotation.Transactional;
 import pojogroup.GoodsVo;
 
-import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
+import javax.jms.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -151,7 +148,7 @@ public class GoodsServiceImpl implements GoodsService {
             criteria.andSellerIdEqualTo(goods.getSellerId());
         }
         //只查询没有被标记为删除的商品
-        criteria.andIsDeleteIsNull();
+//        criteria.andIsDeleteIsNull();
 
         Page<Goods> p = (Page<Goods>) goodsDao.selectByExample(goodsQuery);
         return new PageResult(p.getTotal(), p.getResult());
@@ -307,6 +304,43 @@ public class GoodsServiceImpl implements GoodsService {
                     return session.createTextMessage(String.valueOf(id));
                 }
             });
+        }
+    }
+
+    /**
+     * 商家上下架管理
+     * @param ids
+     * @param dStatus
+     * @param name
+     */
+    @Autowired
+    private Destination topicPageAndSolrDestinationManager;
+    @Override
+    public void updateDelStatus(Long[] ids, String dStatus, String name) {
+        Goods goods = new Goods();
+        goods.setIsDelete(dStatus);
+        if (null!=dStatus&&!"".equals(dStatus.trim())){
+            for (Long id : ids) {
+                GoodsQuery query=new GoodsQuery();
+                query.createCriteria().andIdEqualTo(id);
+                goodsDao.updateByExampleSelective(goods,query);
+
+//直接将id和上架或者下架状态发过去，根据状态来进行下一步操作
+                jmsTemplate.send(topicPageAndSolrDestinationManager, new MessageCreator() {
+                    @Override
+                    public Message createMessage(Session session) throws JMSException {
+                        MapMessage map = session.createMapMessage();
+                        map.setLong("id",id);
+                        map.setString("dStatus",dStatus);
+                        return map;
+                    }
+                });
+
+
+
+            }
+
+
         }
     }
 }
