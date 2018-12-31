@@ -29,5 +29,19 @@
 		<property name="messageListener" ref="pageListener" />
 	</bean>
 	<bean id="pageListener" class="cn.itcast.core.listener.PageListener"></bean>
-	
+
+
+	<!--发布订阅模式, 将数据导入solr索引库     上架下架管理-->
+	<bean id="topicPageAndSolrDestinationManager" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="pinyougou_topic_page_solr_manager"/>
+	</bean>
+
+	<!-- 发布订阅模式, 消息监听容器, 将数据导入solr索引库 -->
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destination" ref="topicPageAndSolrDestinationManager" />
+		<property name="messageListener" ref="pageAndSolrManagerListener" />
+	</bean>
+	<bean id="pageAndSolrManagerListener" class="cn.itcast.core.listener.PageMangerListener"></bean>
+	<!--上下架管理结束-->
 </beans>

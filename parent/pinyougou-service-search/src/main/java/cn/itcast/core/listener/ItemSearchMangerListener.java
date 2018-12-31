@@ -40,6 +40,7 @@ public class ItemSearchMangerListener implements MessageListener {
                 Criteria criteria=new Criteria("item_goodsid").is(id);
                 querys.addCriteria(criteria);
                 solrTemplate.delete(querys);
+                solrTemplate.commit();
             }
         } catch (JMSException e) {
             e.printStackTrace();

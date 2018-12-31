@@ -82,7 +82,7 @@ app.controller('goodsController' ,function($scope,$controller,itemCatService   ,
     
 	// 显示状态
 	$scope.status = ["未审核","审核通过","审核未通过","关闭"];
-	$scope.mstatus=["已上架","已下架"];
+	$scope.mstatus=["已下架","已上架"];
 	$scope.itemCatList = [];
 	// 显示分类:
 	$scope.findItemCatList = function(){
@@ -115,5 +115,8 @@ app.controller('goodsController' ,function($scope,$controller,itemCatService   ,
             }
         })
 
+    }
+    $scope.inserts=function (id) {
+		$scope.selectIds.push(id);
     }
 });	

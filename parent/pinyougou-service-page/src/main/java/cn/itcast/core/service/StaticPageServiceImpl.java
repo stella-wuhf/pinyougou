@@ -17,6 +17,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import javax.servlet.ServletContext;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.HashMap;
@@ -81,6 +82,22 @@ public class StaticPageServiceImpl implements StaticPageService, ServletContextA
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+    public void delStaticPage(Long id){
+        Configuration con = freeMarkerConfigurer.getConfiguration();
+        Writer out = null;
+        //输出路径
+        String outPath = getPath("/" + id + ".html");
+        //创建集合
+        Map<String, Object> map = new HashMap<>();
+        map.put("message","商品已经下架");
+        try {
+            Template template = con.getTemplate("del.ftl");
+            out=new OutputStreamWriter(new FileOutputStream(outPath),"utf-8");
+            template.process(map,out);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

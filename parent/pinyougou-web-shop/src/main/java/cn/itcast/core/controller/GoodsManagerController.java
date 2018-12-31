@@ -12,20 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("goodsm")
 public class GoodsManagerController {
-    private  String name = SecurityContextHolder.getContext().getAuthentication().getName();
+
     @Reference
     private GoodsService goodsService;
 
     @RequestMapping("search")
     public PageResult search(Integer page, Integer rows, @RequestBody Goods goods){
-
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
         goods.setSellerId(name);
         return   goodsService.search(page,rows,goods);
     }
     @RequestMapping("updateDelStatus")
     public Result updateDelStatus(Long[] ids, String dStatus){
-
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
         try {
+
             goodsService.updateDelStatus(ids,dStatus,name);
             return new Result(true,"成功");
         } catch (Exception e) {

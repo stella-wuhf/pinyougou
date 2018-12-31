@@ -5,7 +5,7 @@
     <!-- 页面meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>商品管理</title>
+    <title>上架下架管理</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
@@ -98,10 +98,10 @@
 		            </span>
                 </td>
                 <td class="text-center">
-                    <button type="button" ng-click="updateStatus('1')" class="btn btn-default" title="审核通过"><i
+                    <button type="button" ng-click="inserts(entity.id);updateDelStatus('1')" class="btn btn-default" title="审核通过"><i
                             class="fa fa-check"></i> 上架
                     </button>
-                    <button type="button" ng-click="updateStatus('0')" class="btn btn-default" title="驳回"><i
+                    <button type="button" ng-click="inserts(entity.id);updateDelStatus('0')" class="btn btn-default" title="驳回"><i
                             class="fa fa-ban"></i> 下架
                     </button>
                     <!--<button type="button" class="btn bg-olive btn-xs">详情</button>-->
@@ -114,6 +114,7 @@
 
     </div>
     <!-- 数据表格 /-->
+    {{selectIds}}
     <!-- 分页 -->
     <tm-pagination conf="paginationConf"></tm-pagination>
 
