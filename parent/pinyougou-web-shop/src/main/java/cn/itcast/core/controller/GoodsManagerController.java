@@ -9,11 +9,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-@RequestMapping("goodsm")
 @RestController
+@RequestMapping("goodsm")
 public class GoodsManagerController {
-  private  String name = SecurityContextHolder.getContext().getAuthentication().getName();
+    private  String name = SecurityContextHolder.getContext().getAuthentication().getName();
     @Reference
     private GoodsService goodsService;
 
@@ -21,7 +20,7 @@ public class GoodsManagerController {
     public PageResult search(Integer page, Integer rows, @RequestBody Goods goods){
 
         goods.setSellerId(name);
-      return   goodsService.search(page,rows,goods);
+        return   goodsService.search(page,rows,goods);
     }
     @RequestMapping("updateDelStatus")
     public Result updateDelStatus(Long[] ids, String dStatus){
@@ -35,3 +34,4 @@ public class GoodsManagerController {
 
     }
 }
+
