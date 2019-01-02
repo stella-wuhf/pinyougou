@@ -22,6 +22,7 @@
     <script type="text/javascript" src="../js/controller/baseController.js"></script>
     <script type="text/javascript" src="../js/controller/brandController.js"></script>
     <script type="text/javascript" src="../js/service/brandService.js"></script>
+    <script type="text/javascript" src="../js/service/uploadService.js"></script>
 </head>
 <body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="brandController">
 <!-- .box-body -->
@@ -48,9 +49,16 @@
                             class="fa fa-refresh"></i> 刷新
                     </button>
                 </div>
+
             </div>
+
+
         </div>
-        <div class="box-tools pull-right">
+        <div>
+            <input id="fileUpload" type="file" />
+            <button ng-click="uploadFileExcel()">上传</button>
+        </div>
+        <!--<div class="box-tools pull-right">-->
             <div class="has-feedback">
                 品牌名称:<input type="text" ng-model="searchEntity.name"> 品牌首字母:<input type="text"
                                                                                    ng-model="searchEntity.firstChar">
