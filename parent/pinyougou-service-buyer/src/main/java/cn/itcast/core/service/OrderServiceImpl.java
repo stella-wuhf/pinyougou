@@ -9,16 +9,19 @@ import cn.itcast.core.pojo.item.Item;
 import cn.itcast.core.pojo.log.PayLog;
 import cn.itcast.core.pojo.order.Order;
 import cn.itcast.core.pojo.order.OrderItem;
+import cn.itcast.core.pojo.order.OrderItemQuery;
+import cn.itcast.core.pojo.order.OrderQuery;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import pojogroup.Cart;
+import pojogroup.OrderVo;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * 订单管理
@@ -130,5 +133,58 @@ public class OrderServiceImpl implements OrderService {
         payLogDao.insertSelective(payLog);
         //保存到缓存中,方便快速取到payLog
         redisTemplate.boundHashOps("payLog").put(order.getUserId(),payLog);
+    }
+
+    //网页端分页查询订单及订单详情
+    @Override
+    public Map<String, Object> search(Map<String, String> searchMap) {
+        //$scope.searchMap={'pageNo':1,'pageSize':3,'userId':''};
+
+        int pageNo = Integer.parseInt(searchMap.get("pageNo"));
+        int pageSize = Integer.parseInt(searchMap.get("pageSize"));
+        String userId = searchMap.get("userId");
+
+
+        //resultMap 应该包含总页数 订单包装集合
+        Map<String, Object> resultMap = new HashMap<>();
+        //订单包装类集合
+        List<OrderVo> orderVoList = new ArrayList<OrderVo>();
+
+        //分页助手 ,对订单集合进行分页
+        PageHelper.startPage(pageNo, pageSize);
+
+        //查询当前用户的全部订单
+        OrderQuery orderQuery = new OrderQuery();
+        orderQuery.createCriteria().andUserIdEqualTo(userId);
+        Page<Order> page = (Page<Order>) orderDao.selectByExample(orderQuery);
+        List<Order> orderList = page.getResult();
+
+        for (Order order : orderList) {
+            //根据订单id查询订单详情集合
+            OrderItemQuery orderItemQuery = new OrderItemQuery();
+            orderItemQuery.createCriteria().andOrderIdEqualTo(order.getOrderId());
+            List<OrderItem> orderItemList = orderItemDao.selectByExample(orderItemQuery);
+
+            //封装数据
+            OrderVo orderVo = new OrderVo();
+            orderVo.setOrder(order);
+            orderVo.setOrderItemList(orderItemList);
+
+            orderVoList.add(orderVo);
+        }
+        //总页数
+        resultMap.put("totalPages", page.getPages());
+        //订单详情map
+        resultMap.put("orderVoList", orderVoList);
+        return resultMap;
+    }
+
+    //取消订单  订单状态为  6、交易关闭
+    @Override
+    public void cancleOrder(Long orderId) {
+        Order order = new Order();
+        order.setOrderId(orderId);
+        order.setStatus("6");
+        orderDao.updateByPrimaryKeySelective(order);
     }
 }

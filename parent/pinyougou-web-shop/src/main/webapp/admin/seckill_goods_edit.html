@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>秒杀商品编辑</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- 引入angular -->
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+
+    <script type="text/javascript" src="../js/base.js"></script>
+
+    <script type="text/javascript" src="../js/service/goodsService.js"></script>
+    <script type="text/javascript" src="../js/service/seckillGoodsService.js"></script>
+    <script type="text/javascript" src="../js/service/itemService.js"></script>
+
+    <script type="text/javascript" src="../js/controller/baseController.js"></script>
+    <script type="text/javascript" src="../js/controller/goodsController.js"></script>
+    <script type="text/javascript" src="../js/controller/seckillGoodsController.js"></script>
+
+</head>
+<!--页面启动初始化,查询一级分类列表,findOne实现数据回显,接收另一个页面传来的id进行操作-->
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="seckillController"
+      ng-init="findAllGoodsList()">
+
+<!-- 正文区域 -->
+<section class="content">
+
+    <div class="box-header with-border">
+        <h3 class="box-title">秒杀商品申请</h3>
+    </div>
+
+    <div class="box-body">
+
+        <!--tab页-->
+        <div class="nav-tabs-custom">
+
+            <!--tab头-->
+            <!-- <li class="active">
+                 <a href="#home" data-toggle="tab">秒杀商品申请</a>
+             </li>-->
+            <!--tab头/-->
+
+            <!--tab内容-->
+            <div class="tab-content">
+
+                <!--表单内容-->
+                <div class="tab-pane active" id="home">
+                    <div class="row data-type">
+
+                        <!--<div class="col-md-2 title">商品名称</div>-->
+                        <!--<div class="col-md-10 data">-->
+                        <!--<input type="text" ng-model="entity.goods.goodsName" class="form-control" placeholder="商品名称"-->
+                        <!--value="">-->
+                        <!--</div>-->
+
+                        <div class="col-md-2 title">商品名称</div>
+                        <div class="col-md-10 data">
+                            <select class="form-control" ng-model="entity.goodsId"
+                                    ng-options="goods.id as goods.goodsName for goods in goodsList"></select>
+                        </div>
+
+                        <div class="col-md-2 title">库存商品</div>
+                        <div class="col-md-10 data">
+                            <select class="form-control" ng-model="entity.itemId"
+                                    ng-options="item.id as item.title for item in itemList"></select>
+                        </div>
+
+                        <div class="col-md-2 title">秒杀标题</div>
+                        <div class="col-md-10 data">
+                            <input type="text" ng-model="entity.title" class="form-control" placeholder="秒杀标题"
+                                   value="">
+                        </div>
+
+                        <div class="col-md-2 title">原价格</div>
+                        <div class="col-md-4 data">
+                            <div class="input-group">
+                                <span class="input-group-addon">¥</span>
+                                <input type="text" ng-model="entity.price" class="form-control" placeholder="原价格"
+                                       value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 title">秒杀价格</div>
+                        <div class="col-md-4 data">
+                            <div class="input-group">
+                                <span class="input-group-addon">¥</span>
+                                <input type="text" ng-model="entity.costPrice" class="form-control" placeholder="秒杀价格"
+                                       value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 title">原库存数量</div>
+                        <div class="col-md-4 data">
+                            <div class="input-group">
+                                <span class="input-group-addon">¥</span>
+                                <input type="text" ng-model="num" class="form-control" placeholder="原库存数量"
+                                       value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 title">秒杀数量</div>
+                        <div class="col-md-4 data">
+                            <div class="input-group">
+                                <span class="input-group-addon">¥</span>
+                                <input type="text" ng-model="entity.num" class="form-control" placeholder="秒杀数量"
+                                       value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 title">开始时间</div>
+                        <div class="col-md-4 data">
+                                <input type="text" ng-model="entity.startTime" class="form-control" placeholder="xxxx-xx-xx xx:xx:xx"
+                                       value="">
+                        </div>
+
+                        <div class="col-md-2 title">结束时间</div>
+                        <div class="col-md-4 data">
+                                <input type="text" ng-model="entity.endTime" class="form-control" placeholder="xxxx-xx-xx xx:xx:xx"
+                                       value="">
+                        </div>
+
+                        <div class="col-md-2 title rowHeight2x">描述</div>
+                        <div class="col-md-10 data rowHeight2x">
+                            <textarea rows="4" class="form-control" ng-model="entity.introduction"
+                                      placeholder="描述"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--tab内容/-->
+            <!--表单内容/-->
+        </div>
+
+
+    </div>
+    <div class="btn-toolbar list-toolbar">
+        <button class="btn btn-primary" ng-click="save()"><i class="fa fa-save"></i>提交申请</button>
+        <button class="btn btn-default" ng-click="back()">返回列表</button>
+    </div>
+
+</section>
+
+<!-- 正文区域 /-->
+<script type="text/javascript">
+
+    var editor;
+    KindEditor.ready(function (K) {
+        editor = K.create('textarea[name="content"]', {
+            allowFileManager: true
+        });
+    });
+
+</script>
+
+</body>
+
+</html>

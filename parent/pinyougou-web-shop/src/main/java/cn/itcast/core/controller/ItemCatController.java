@@ -41,11 +41,11 @@ public class ItemCatController {
         return itemCatService.findAll();
     }
 
+    /*分类申请*/
     @RequestMapping("add")
     public Result add(@RequestBody ItemCatSt itemCatSt){
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         itemCatSt.setSellerId(name);
-//        itemCatSt.setParentId(parentId);
         try {
             itemCatService.add(itemCatSt);
             return new Result(true,"成功");

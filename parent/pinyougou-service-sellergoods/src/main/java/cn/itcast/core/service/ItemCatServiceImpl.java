@@ -35,7 +35,7 @@ public class ItemCatServiceImpl implements ItemCatService {
         List<ItemCat> itemCatList = findAll();
         //2.将结果集保存到缓存库中(hash类型),k:分类名称 v:模板id
         for (ItemCat itemCat : itemCatList) {
-            redisTemplate.boundHashOps("itemCat").put(itemCat.getName(),itemCat.getTypeId());
+            redisTemplate.boundHashOps("itemCat").put(itemCat.getName(), itemCat.getTypeId());
         }
 
         ItemCatQuery itemCatQuery = new ItemCatQuery();
@@ -57,15 +57,17 @@ public class ItemCatServiceImpl implements ItemCatService {
 
     /**
      * 商家申请
+     *
      * @param parentId
      * @return
      */
     @Autowired
     private ItemCatStDao itemCatStDao;
+
     @Override
     public List<ItemCatSt> findByParentIdst(Long parentId, String name) {
-        ItemCatStQuery query=new ItemCatStQuery();
-       query.createCriteria().andParentIdEqualTo(parentId).andSellerIdEqualTo(name);
+        ItemCatStQuery query = new ItemCatStQuery();
+        query.createCriteria().andParentIdEqualTo(parentId).andSellerIdEqualTo(name);
         List<ItemCatSt> itemCatSts = itemCatStDao.selectByExample(query);
         return itemCatSts;
     }

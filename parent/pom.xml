@@ -21,6 +21,7 @@
         <module>pinyougou-web-manager</module>
         <module>pinyougou-web-shop</module>
         <module>pinyougou-web-user</module>
+        <module>pinyougou-service-seckill</module>
     </modules>
     <packaging>pom</packaging>
 

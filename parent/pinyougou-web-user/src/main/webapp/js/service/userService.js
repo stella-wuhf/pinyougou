@@ -33,5 +33,9 @@ app.service('userService',function($http){
 	this.sendCode=function(phone){
 		return $http.get('../user/sendCode.do?phone='+phone);
 	}
+	//查询用户信息
+    this.showUserInfo=function(){
+        return $http.get('../user/showUserInfo.do');
+    }
 	
 });

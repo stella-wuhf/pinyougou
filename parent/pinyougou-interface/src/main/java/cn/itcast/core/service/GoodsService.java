@@ -4,6 +4,8 @@ import cn.itcast.core.pojo.good.Goods;
 import entity.PageResult;
 import pojogroup.GoodsVo;
 
+import java.util.List;
+
 public interface GoodsService {
     void add(GoodsVo vo);
 
@@ -24,4 +26,6 @@ public interface GoodsService {
      * @param name
      */
     void updateDelStatus(Long[] ids, String dStatus, String name);
+
+    List<Goods> findGoodsListBySellerId(String sellerId);
 }

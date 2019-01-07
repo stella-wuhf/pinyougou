@@ -28,5 +28,10 @@ app.service('goodsService',function($http){
 	//搜索
 	this.search=function(page,rows,searchEntity){
 		return $http.post('../goodsm/search.do?page='+page+"&rows="+rows, searchEntity);
-	}    	
+	}
+
+    //根据商家id查询全部商品
+    this.findGoodsListBySellerId=function(){
+        return $http.get('../goods/findGoodsListBySellerId.do');
+    }
 });

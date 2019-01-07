@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pojogroup.GoodsVo;
 
+import java.util.List;
+
 /**
- *  商家的商品管理
+ * 商家的商品管理
  */
 @RestController
 @RequestMapping("goods")
@@ -23,7 +25,7 @@ public class GoodsController {
 
     /*添加商品,要操作三张表的添加*/
     @RequestMapping("add")
-    public Result add(@RequestBody GoodsVo vo){
+    public Result add(@RequestBody GoodsVo vo) {
         try {
             //获取商家id
             String name = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -31,38 +33,46 @@ public class GoodsController {
             vo.getGoods().setSellerId(name);
 
             goodsService.add(vo);
-            return new Result(true,"保存成功");
+            return new Result(true, "保存成功");
         } catch (Exception e) {
             //e.printStackTrace();
-            return new Result(false,"保存失败");
+            return new Result(false, "保存失败");
         }
     }
 
     /*商品分页查询*/
     @RequestMapping("search")
-    public PageResult search(Integer page, Integer rows, @RequestBody Goods goods){
+    public PageResult search(Integer page, Integer rows, @RequestBody Goods goods) {
         //获取商id,商家只能查询自己家的商品,所以要固定商家id
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         goods.setSellerId(name);
 
-        return goodsService.search(page,rows,goods);
+        return goodsService.search(page, rows, goods);
     }
 
     /*查询单个实例*/
     @RequestMapping("findOne")
-    public GoodsVo findOne(Long id){
+    public GoodsVo findOne(Long id) {
         return goodsService.findOne(id);
     }
 
     /*更新商品*/
     @RequestMapping("update")
-    public Result update(@RequestBody GoodsVo vo){
+    public Result update(@RequestBody GoodsVo vo) {
         try {
             goodsService.update(vo);
-            return new Result(true,"修改成功");
-        }catch (Exception e){
-            return new Result(false,"修改失败");
+            return new Result(true, "修改成功");
+        } catch (Exception e) {
+            return new Result(false, "修改失败");
         }
     }
+
+    /*查询商家名下全部的商品*/
+    @RequestMapping("/findGoodsListBySellerId")
+    public List<Goods> findGoodsListBySellerId() {
+        String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
+        return goodsService.findGoodsListBySellerId(sellerId);
+    }
+
 
 }

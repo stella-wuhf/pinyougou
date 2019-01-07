@@ -335,12 +335,14 @@ public class GoodsServiceImpl implements GoodsService {
                         return map;
                     }
                 });
-
-
-
             }
-
-
         }
+    }
+    //根据商家id查询全部商品
+    @Override
+    public List<Goods> findGoodsListBySellerId(String sellerId) {
+        GoodsQuery goodsQuery = new GoodsQuery();
+        goodsQuery.createCriteria().andSellerIdEqualTo(sellerId);
+        return goodsDao.selectByExample(goodsQuery);
     }
 }
