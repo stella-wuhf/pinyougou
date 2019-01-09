@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/pinyougou-service-buyer/pinyougou-service-buyer.iml" filepath="$PROJECT_DIR$/pinyougou-service-buyer/pinyougou-service-buyer.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou-service-page/pinyougou-service-page.iml" filepath="$PROJECT_DIR$/pinyougou-service-page/pinyougou-service-page.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou-service-search/pinyougou-service-search.iml" filepath="$PROJECT_DIR$/pinyougou-service-search/pinyougou-service-search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou-service-seckill/pinyougou-service-seckill.iml" filepath="$PROJECT_DIR$/pinyougou-service-seckill/pinyougou-service-seckill.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou-service-sellergoods/pinyougou-service-sellergoods.iml" filepath="$PROJECT_DIR$/pinyougou-service-sellergoods/pinyougou-service-sellergoods.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou-service-user/pinyougou-service-user.iml" filepath="$PROJECT_DIR$/pinyougou-service-user/pinyougou-service-user.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou-web-manager/pinyougou-web-manager.iml" filepath="$PROJECT_DIR$/pinyougou-web-manager/pinyougou-web-manager.iml" />

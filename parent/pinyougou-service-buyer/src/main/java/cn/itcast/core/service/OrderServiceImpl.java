@@ -14,11 +14,14 @@ import cn.itcast.core.pojo.order.OrderQuery;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import entity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import pojogroup.Cart;
 import pojogroup.OrderVo;
+
+
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -186,5 +189,56 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderId(orderId);
         order.setStatus("6");
         orderDao.updateByPrimaryKeySelective(order);
+    }
+	
+	 //分页查询每日新增订单
+    @Override
+    public PageResult search(Integer page, Integer rows, Order order) {
+        PageHelper.startPage(page, rows);
+        OrderQuery orderQuery = new OrderQuery();
+
+        OrderQuery.Criteria criteria = orderQuery.createCriteria();
+        criteria.andOrderIdEqualToOrderTime();
+
+        if (null!=order.getOrderId()){
+            criteria.andOrderIdEqualTo(order.getOrderId());
+        }
+
+        if ("1".equals(order.getStatus())){
+            criteria.andStatusEqualTo(order.getStatus());
+        }
+        if ("2".equals(order.getStatus())){
+            criteria.andStatusEqualTo(order.getStatus());
+        }
+
+        Page<Order> orders = (Page<Order>) orderDao.selectByExample(orderQuery);
+
+
+        return  new PageResult(orders.getTotal(),orders.getResult());
+
+
+
+    }
+	
+	@Override
+    public List creatPic() {
+        //获取商家id
+        ArrayList list = new ArrayList<>();
+        ArrayList list1 = new ArrayList<>();//时间集合
+        ArrayList list2 = new ArrayList<>();//结果集合
+            //获得每个商家的结果集[ [sellerid],[ [qiandu],[pinyougou],[yijia] ] ]
+            List<entity.OrderVo> orderVos = orderDao.sumOrderPrice();
+            for (entity.OrderVo orderVo : orderVos) {
+                BigDecimal countprice = orderVo.getCountprice();
+                String createday = orderVo.getCreateday();
+                list1.add(createday);//[ [][][] ]
+                list2.add(countprice);//[ [][][] ]
+            }
+
+        list.add(list1);
+        list.add(list2);
+
+        return list;
+
     }
 }

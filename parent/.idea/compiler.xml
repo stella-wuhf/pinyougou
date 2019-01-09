@@ -13,6 +13,7 @@
         <module name="pinyougou-service-buyer" />
         <module name="pinyougou-service-page" />
         <module name="pinyougou-service-search" />
+        <module name="pinyougou-service-seckill" />
         <module name="pinyougou-service-sellergoods" />
         <module name="pinyougou-service-user" />
         <module name="pinyougou-web-manager" />
@@ -30,6 +31,7 @@
       <module name="pinyougou-service-buyer" target="1.8" />
       <module name="pinyougou-service-page" target="1.8" />
       <module name="pinyougou-service-search" target="1.8" />
+      <module name="pinyougou-service-seckill" target="1.8" />
       <module name="pinyougou-service-sellergoods" target="1.8" />
       <module name="pinyougou-service-user" target="1.8" />
       <module name="pinyougou-web-manager" target="1.8" />

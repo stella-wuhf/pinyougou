@@ -3,10 +3,14 @@ package cn.itcast.core.dao.order;
 import cn.itcast.core.pojo.order.Order;
 import cn.itcast.core.pojo.order.OrderQuery;
 import java.util.List;
+
+import entity.OrderVo;
 import org.apache.ibatis.annotations.Param;
 
 public interface OrderDao {
     int countByExample(OrderQuery example);
+	
+	 int countByExampleGroupNum();
 
     int deleteByExample(OrderQuery example);
 
@@ -27,4 +31,8 @@ public interface OrderDao {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+	   //dlj
+    List<OrderVo> sumOrderPrice();
+//    List<OrderVo> sumOrderPrice(String sellerid);
+    List<String> getsellid();
 }

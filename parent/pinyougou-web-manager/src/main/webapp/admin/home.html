@@ -14,9 +14,19 @@
     <link rel="stylesheet" href="../css/style.css">
 	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- 引入angular的js -->
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+    <script type="text/javascript" src="../js/controller/indexController.js"></script>
+
+    <script type="text/javascript" src="../js/service/indexService.js"></script>
+    <script type="text/javascript" src="../js/service/loginService.js"></script>
+
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini"  ng-app="pinyougou" ng-controller="indexController"
+      ng-init="findindexCatList()">
 
    <!-- 内容区域 -->
 
@@ -28,7 +38,7 @@
                     <small>首页</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="all-admin-index.html"><i class="fa fa-dashboard"></i> 首页</a></li>
+                    <li><a href="all-order-manage-list.html"><i class="fa fa-dashboard"></i> 首页</a></li>
                 </ol>
             </section>
             <!-- 内容头部 /-->
@@ -43,7 +53,8 @@
                         <!-- small box -->
                         <div class="small-box bg-aqua">
                             <div class="inner">
-                                <h3>150</h3>
+                                <h3>
+                                    {{newOderNUM}}</h3>
 
                                 <p>新订单</p>
                             </div>
@@ -58,9 +69,9 @@
                         <!-- small box -->
                         <div class="small-box bg-green">
                             <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                                <h3>{{orderNum}}<sup style="font-size: 20px"></sup></h3>
 
-                                <p>转化率</p>
+                                <p>月订单数</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
