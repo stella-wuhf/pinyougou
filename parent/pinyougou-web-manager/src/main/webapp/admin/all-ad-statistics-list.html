@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<script language="javascript" src="../plugins/jQuery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../plugins/echarts/echarts.common.min.js"></script>
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+<div id="container" style="height: 100%"></div>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+<!-- 引入angular的js -->
+<script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+<script type="text/javascript" src="../js/base.js"></script>
+<script type="text/javascript" src="../js/controller/indexController.js"></script>
+
+<script type="text/javascript" src="../js/service/indexService.js"></script>
+<script type="text/javascript" src="../js/service/loginService.js"></script>
+
+<script type="text/javascript">
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    option = {
+        backgroundColor: "#404A59",
+        color: ['#ffd285', '#ff733f', '#ec4863'],
+
+        title: [{
+            text: '月销售金额折线图(元)',
+            left: '1%',
+            top: '6%',
+            textStyle: {
+                color: '#fff'
+            }
+        }, {
+            text: '月销售金额饼状图',
+            left: '83%',
+            top: '6%',
+            textAlign: 'center',
+            textStyle: {
+                color: '#fff'
+            }
+        }],
+
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            x: 300,
+            top: '7%',
+            textStyle: {
+                color: '#ffd285',
+            },
+            data: []
+        },
+        grid: {
+            left: '1%',
+            right: '35%',
+            top: '16%',
+            bottom: '6%',
+            containLabel: true
+        },
+        toolbox: {
+            "show": false,
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            "axisLine": {
+                lineStyle: {
+                    color: '#FF4500'
+                }
+            },
+            "axisTick": {
+                "show": false
+            },
+            axisLabel: {
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            boundaryGap: false,
+            data: ['','','']
+        },
+        yAxis: {
+            "axisLine": {
+                lineStyle: {
+                    color: '#fff'
+                }
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#fff'
+                }
+            },
+            "axisTick": {
+                "show": false
+            },
+            axisLabel: {
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            type: 'value'
+        },
+        series: [{
+            name: '品优购',
+            smooth: true,
+            type: 'line',
+            symbolSize: 12,
+            symbol: 'circle',
+            data: []
+        },
+            {
+            name: '宜家',
+            smooth: true,
+            type: 'line',
+            symbolSize: 12,
+            symbol: 'circle',
+            data: []
+        },
+            {
+            name: '千度',
+            smooth: true,
+            type: 'line',
+            symbolSize: 12,
+            symbol: 'circle',
+            data: []
+        },
+            {
+                type: 'pie',
+                center: ['83%', '33%'],
+                radius: ['25%', '30%'],
+                label: {
+                    normal: {
+                        position: 'center'
+                    }
+                },
+
+
+
+                data: [{
+                    tooltip: {
+                        show: false
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#ffd285'
+                        }
+                    },
+                    label: {
+                        normal: {
+                            textStyle: {
+                                color: '#ffd285',
+                            },
+                            formatter: '品优购 {d} % \n',
+                            fontSize: 15
+                        }
+                    },
+                    value: 180,
+                    data: '品优购',
+                    tooltip: {
+                        show: false
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#ffd285'
+                        }
+                    },
+                    label: {
+                        normal: {
+                            textStyle: {
+                                color: '#ffd285',
+                            },
+                            formatter: '品优购 {d} % \n',
+                            fontSize: 15
+                        }
+                    }
+                }, {
+                    value: 180,
+                    name: '宜家',
+                    tooltip: {
+                        show: false
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#ff733f'
+                        }
+                    },
+                    label: {
+                        normal: {
+                            textStyle: {
+                                color: '#ff733f',
+                            },
+                            formatter: '宜家 {d} %  \n',
+                            fontSize: 15
+                        }
+                    }
+                }, {
+                    value: 335,
+                    name: '千度',
+                    itemStyle: {
+                        normal: {
+                            color: '#ec4863'
+                        }
+                    },
+                    label: {
+                        normal: {
+                            formatter: '千度 {d} %',
+                            textStyle: {
+                                color: '#ec4863',
+                                fontSize: 15
+                            }
+                        }
+                    }
+                }]
+
+            },
+
+
+
+        ]
+    };
+    ;
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+
+    //ajax请求 9101
+    $.ajax({
+        type: "post",
+        url: "http://localhost:9101/orders/creatPic.do",
+        success: function (e) {
+
+            // var e = eval('(' + e + ')');
+            // var e = e.parseJSON();  json字符串转为json对象
+            // var e = JSON.parse(e);
+            myChart.setOption({
+
+                //时间
+                xAxis: {
+                    data: e[0]
+                }
+                //销售额
+                , series: [{
+                    data: e[1]
+                    // data: e[2]
+                }]
+            });
+            myChart.hideLoading();
+        },
+        error: function (e) {
+            console.log(e)
+        }
+    });
+</script>
+</body>
+</html>

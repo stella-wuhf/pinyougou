@@ -530,4 +530,19 @@
       seller_id = #{sellerId,jdbcType=VARCHAR}
     where order_id = #{orderId,jdbcType=BIGINT}
   </update>
+  
+  
+  
+  <!--SELECT COUNT(create_time) FROM tb_order WHERE DATE(create_time) = CURDATE();-->
+  <select id="countByExampleGroupNum"  resultType="java.lang.Integer" >
+    select  COUNT(create_time) FROM tb_order WHERE DATE(create_time) = CURDATE();
+  </select>
+  
+   <select id="sumOrderPrice"  resultType="entity.OrderVo" >
+    SELECT SUM(payment) as countprice ,date(create_time) as createday FROM tb_order   WHERE MONTH(create_Time)=(SELECT MONTH(CURDATE()))  GROUP BY DATE(create_time);
+  </select>
+  
+  <select id="getsellid"  resultType="java.lang.String" >
+   SELECT seller_id FROM tb_order GROUP BY seller_id
+  </select>
 </mapper>

@@ -120,7 +120,11 @@ public class OrderQuery {
             addCriterion("order_id is null");
             return (Criteria) this;
         }
+        public Criteria andOrderIdEqualToOrderTime() {
+            addCriterion("DATE(create_time) =CURDATE()");
 
+            return (Criteria) this;
+        }
         public Criteria andOrderIdIsNotNull() {
             addCriterion("order_id is not null");
             return (Criteria) this;
@@ -450,7 +454,10 @@ public class OrderQuery {
             addCriterion("create_time is null");
             return (Criteria) this;
         }
-
+        public Criteria andCreateTimeEqualToMonth() {
+            addCriterion("MONTH(create_Time)=(SELECT MONTH(CURDATE()))");
+            return (Criteria) this;
+        }
         public Criteria andCreateTimeIsNotNull() {
             addCriterion("create_time is not null");
             return (Criteria) this;
