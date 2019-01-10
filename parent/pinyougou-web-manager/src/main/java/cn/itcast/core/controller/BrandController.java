@@ -1,6 +1,7 @@
 package cn.itcast.core.controller;
 
 import cn.itcast.core.pojo.good.Brand;
+import cn.itcast.core.pojo.good.Brandst;
 import cn.itcast.core.service.BrandService;
 import com.alibaba.dubbo.config.annotation.Reference;
 import entity.PageResult;
@@ -84,6 +85,23 @@ public class BrandController {
     @RequestMapping("selectOptionList")
     public List<Map> selectOptionList(){
         return brandService.selectOptionList();
+    }
+
+    /*修改商品状态  审核状态*/
+    @RequestMapping("updateStatus")
+    public Result updateStatus(Long[] ids,String status){
+        try {
+            brandService.updateStatusst(ids,status);
+            return new Result(true,"修改状态成功");
+        } catch (Exception e) {
+            //e.printStackTrace();
+            return new Result(false,"修改状态失败");
+        }
+    }
+    /*分页查询品牌数据列表 , 条件查询*/
+    @RequestMapping("searchst")
+    public PageResult searchst(Integer pageNum, Integer pageSize,@RequestBody Brandst brandst) {
+        return brandService.searchst(pageNum, pageSize,brandst);
     }
 
 }

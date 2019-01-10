@@ -43,4 +43,6 @@ public interface SpecificationService {
     void deletest(Long[] ids);
 
     List<Map> selectOptionListst(String name);
+
+    void updateStatusst(Long[] ids, String status);
 }

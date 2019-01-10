@@ -21,7 +21,7 @@ public class OrderController {
     OrderService orderService;
     @RequestMapping("search")
     public PageResult search(Integer page, Integer rows, @RequestBody Order order){
-        return orderService.search(page,rows,order);
+        return orderService.searchManager(page,rows,order);
     }
     //SELECT SUM(payment),DATE(create_time) FROM tb_order   WHERE MONTH(create_Time)=(SELECT MONTH(CURDATE()))  GROUP BY DATE(create_time);
     @RequestMapping("creatPic")

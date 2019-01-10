@@ -21,4 +21,8 @@ public interface ItemCatService {
     List<ItemCatSt> findByParentIdst(Long parentId, String name);
 
     void add(ItemCatSt itemCatSt);
+
+    List<ItemCatSt> findAllst();
+
+    void updateStatusst(Long[] ids, String status);
 }

@@ -1,6 +1,7 @@
 package cn.itcast.core.controller;
 
 import cn.itcast.core.pojo.specification.Specification;
+import cn.itcast.core.pojo.specification.SpecificationSt;
 import cn.itcast.core.service.SpecificationService;
 import com.alibaba.dubbo.config.annotation.Reference;
 import entity.PageResult;
@@ -82,6 +83,22 @@ public class SpecificationController {
     @RequestMapping("selectOptionList")
     public List<Map> selectOptionList(){
         return specificationService.selectOptionList();
+    }
+
+    /*修改商品状态  审核状态*/
+    @RequestMapping("updateStatusst")
+    public Result updateStatus(Long[] ids,String status){
+        try {
+            specificationService.updateStatusst(ids,status);
+            return new Result(true,"修改状态成功");
+        } catch (Exception e) {
+            //e.printStackTrace();
+            return new Result(false,"修改状态失败");
+        }
+    }
+    @RequestMapping("/searchst")
+    public PageResult searchst(Integer page, Integer rows, @RequestBody SpecificationSt specificationSt){
+        return specificationService.searchst(page,rows,specificationSt);
     }
 
 }

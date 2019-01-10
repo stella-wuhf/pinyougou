@@ -1,6 +1,7 @@
 package cn.itcast.core.controller;
 
 import cn.itcast.core.pojo.template.TypeTemplate;
+import cn.itcast.core.pojo.template.TypeTemplateSt;
 import cn.itcast.core.service.TypeTemplateService;
 import com.alibaba.dubbo.config.annotation.Reference;
 import entity.PageResult;
@@ -63,6 +64,22 @@ public class TypeTemplateController {
         } catch (Exception e) {
             // e.printStackTrace();
             return new Result(false,"删除失败");
+        }
+    }
+
+    @RequestMapping("/searchst")
+    public PageResult searchst(Integer page, Integer rows, @RequestBody TypeTemplateSt typeTemplateSt){
+        return typeTemplateService.searchst(page,rows,typeTemplateSt);
+    }
+    /*修改商品状态  审核状态*/
+    @RequestMapping("updateStatusst")
+    public Result updateStatusst(Long[] ids,String status){
+        try {
+            typeTemplateService.updateStatusst(ids,status);
+            return new Result(true,"修改状态成功");
+        } catch (Exception e) {
+            //e.printStackTrace();
+            return new Result(false,"修改状态失败");
         }
     }
 

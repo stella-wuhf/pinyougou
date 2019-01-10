@@ -193,7 +193,7 @@ public class OrderServiceImpl implements OrderService {
 	
 	 //分页查询每日新增订单
     @Override
-    public PageResult search(Integer page, Integer rows, Order order) {
+    public PageResult searchManager(Integer page, Integer rows, Order order) {
         PageHelper.startPage(page, rows);
         OrderQuery orderQuery = new OrderQuery();
 

@@ -67,7 +67,9 @@ public class ItemCatServiceImpl implements ItemCatService {
     @Override
     public List<ItemCatSt> findByParentIdst(Long parentId, String name) {
         ItemCatStQuery query = new ItemCatStQuery();
-        query.createCriteria().andParentIdEqualTo(parentId).andSellerIdEqualTo(name);
+        if (name!=null){
+            query.createCriteria().andParentIdEqualTo(parentId).andSellerIdEqualTo(name);
+        }
         List<ItemCatSt> itemCatSts = itemCatStDao.selectByExample(query);
         return itemCatSts;
     }
@@ -76,5 +78,20 @@ public class ItemCatServiceImpl implements ItemCatService {
     public void add(ItemCatSt itemCatSt) {
         itemCatSt.setStatus("0");
         itemCatStDao.insertSelective(itemCatSt);
+    }
+
+    @Override
+    public void updateStatusst(Long[] ids, String status) {
+        ItemCatSt itemCatSt= new ItemCatSt();
+        itemCatSt.setStatus(status);
+        for (Long id : ids) {
+            itemCatSt.setId(id);
+            itemCatStDao.updateByPrimaryKeySelective(itemCatSt);
+        }
+    }
+
+    @Override
+    public List<ItemCatSt> findAllst() {
+        return itemCatStDao.selectByExample(null);
     }
 }

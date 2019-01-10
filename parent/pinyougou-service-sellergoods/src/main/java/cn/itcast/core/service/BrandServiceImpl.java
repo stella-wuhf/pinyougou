@@ -51,11 +51,11 @@ public class BrandServiceImpl implements BrandService {
         BrandQuery brandQuery = new BrandQuery();
         BrandQuery.Criteria criteria = brandQuery.createCriteria();
         //判断品牌名不为空,且不是空格
-        if (null != brand.getName() && !"".equals(brand.getName().trim())) {
+        if (null != brand.getName() && !"" .equals(brand.getName().trim())) {
             criteria.andNameLike("%" + brand.getName().trim() + "%");
         }
         //判断品牌首字母不为空,且不是空格
-        if (null != brand.getFirstChar() && !"".equals(brand.getFirstChar().trim())) {
+        if (null != brand.getFirstChar() && !"" .equals(brand.getFirstChar().trim())) {
             criteria.andFirstCharEqualTo(brand.getFirstChar().trim());
         }
         Page<Brand> page = (Page<Brand>) brandDao.selectByExample(brandQuery);
@@ -102,6 +102,7 @@ public class BrandServiceImpl implements BrandService {
 
     /**
      * 商家品牌申请查询
+     *
      * @param pageNum
      * @param pageSize
      * @param brand
@@ -109,21 +110,22 @@ public class BrandServiceImpl implements BrandService {
      */
     @Autowired
     private BrandstDao brandstDao;
+
     @Override
     public PageResult searchStaus(Integer pageNum, Integer pageSize, Brandst brandst) {
-        PageHelper.startPage(pageNum,pageSize);
-        BrandstQuery query=new BrandstQuery();
+        PageHelper.startPage(pageNum, pageSize);
+        BrandstQuery query = new BrandstQuery();
         BrandstQuery.Criteria criteria = query.createCriteria();
         criteria.andSellerIdEqualTo(brandst.getSellerId());
-        if(null!=brandst.getStatus()&&!"".equals(brandst.getStatus().trim())){
+        if (null != brandst.getStatus() && !"" .equals(brandst.getStatus().trim())) {
             criteria.andStatusEqualTo(brandst.getStatus().trim());
         }
         //判断品牌名不为空,且不是空格
-        if (null != brandst.getName() && !"".equals(brandst.getName().trim())) {
+        if (null != brandst.getName() && !"" .equals(brandst.getName().trim())) {
             criteria.andNameLike("%" + brandst.getName().trim() + "%");
         }
         //判断品牌首字母不为空,且不是空格
-        if (null != brandst.getFirstChar() && !"".equals(brandst.getFirstChar().trim())) {
+        if (null != brandst.getFirstChar() && !"" .equals(brandst.getFirstChar().trim())) {
             criteria.andFirstCharEqualTo(brandst.getFirstChar().trim());
         }
         Page<Brandst> page = (Page<Brandst>) brandstDao.selectByExample(query);
@@ -133,6 +135,7 @@ public class BrandServiceImpl implements BrandService {
 
     /**
      * 添加审核品牌
+     *
      * @param
      */
     @Override
@@ -143,12 +146,13 @@ public class BrandServiceImpl implements BrandService {
 
     /**
      * 删除
+     *
      * @param ids
      */
     @Override
     public void delestu(Long[] ids) {
 
-        BrandstQuery query=new BrandstQuery();
+        BrandstQuery query = new BrandstQuery();
         query.createCriteria().andIdIn(Arrays.asList(ids));
         brandstDao.deleteByExample(query);
 
@@ -166,9 +170,36 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public List<Map> selectOptionListSt(String name) {
+        return brandstDao.selectOptionListSt(name);
+    }
 
+    @Override
+    public PageResult searchst(Integer pageNum, Integer pageSize, Brandst brandst) {
+        //分页插件
+        PageHelper.startPage(pageNum, pageSize);
+        //准备条件
+        BrandstQuery brandstQuery = new BrandstQuery();
+        BrandstQuery.Criteria criteria = brandstQuery.createCriteria();
+        //判断品牌名不为空,且不是空格
+        if (null != brandst.getName() && !"" .equals(brandst.getName().trim())) {
+            criteria.andNameLike("%" + brandst.getName().trim() + "%");
+        }
+        //判断品牌首字母不为空,且不是空格
+        if (null != brandst.getFirstChar() && !"" .equals(brandst.getFirstChar().trim())) {
+            criteria.andFirstCharEqualTo(brandst.getFirstChar().trim());
+        }
+        Page<Brandst> page = (Page<Brandst>) brandstDao.selectByExample(brandstQuery);
+        return new PageResult(page.getTotal(), page.getResult());
+    }
 
-        return  brandstDao.selectOptionListSt(name);
+    @Override
+    public void updateStatusst(Long[] ids, String status) {
+        Brandst brandst = new Brandst();
+        brandst.setStatus(status);
+        for (Long id : ids) {
+            brandst.setId(id);
+            brandstDao.updateByPrimaryKeySelective(brandst);
+        }
     }
 
 }

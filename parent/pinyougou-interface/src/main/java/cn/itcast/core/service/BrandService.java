@@ -35,4 +35,8 @@ public interface BrandService {
     void updatest(Brandst brandst);
 
     List<Map> selectOptionListSt(String name);
+
+    void updateStatusst(Long[] ids, String status);
+
+    PageResult searchst(Integer pageNum, Integer pageSize, Brandst brandst);
 }

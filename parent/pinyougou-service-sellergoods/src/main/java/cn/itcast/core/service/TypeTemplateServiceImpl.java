@@ -136,7 +136,9 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 
         TypeTemplateStQuery query=new TypeTemplateStQuery();
         TypeTemplateStQuery.Criteria criteria = query.createCriteria();
-        criteria.andSellerIdEqualTo(tt.getSellerId());
+        if (tt.getSellerId()!=null){
+            criteria.andSellerIdEqualTo(tt.getSellerId());
+        }
         if (null!=tt.getStatus()&&!"".equals(tt.getStatus().trim())){
           criteria.andStatusEqualTo(tt.getStatus().trim())  ;
         }
@@ -180,5 +182,15 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
         query.createCriteria().andSellerIdEqualTo(name);
         List<TypeTemplateSt> list = typeTemplateStDao.selectByExample(query);
         return list;
+    }
+
+    @Override
+    public void updateStatusst(Long[] ids, String status) {
+        TypeTemplateSt typeTemplateSt = new TypeTemplateSt();
+        typeTemplateSt.setStatus(status);
+        for (Long id : ids) {
+            typeTemplateSt.setId(id);
+            typeTemplateStDao.updateByPrimaryKeySelective(typeTemplateSt);
+        }
     }
 }

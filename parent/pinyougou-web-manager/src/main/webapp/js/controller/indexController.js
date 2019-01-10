@@ -1,4 +1,4 @@
-app.controller('indexController', function ($scope,$controller,indexService,loginService) {
+app.controller('indexController', function ($scope,indexService,loginService) {
     // loginService,
     // $controller('baseController',{$scope:$scope});//继承
     $scope.showName = function () {

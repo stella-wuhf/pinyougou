@@ -1,8 +1,10 @@
 package cn.itcast.core.controller;
 
 import cn.itcast.core.pojo.item.ItemCat;
+import cn.itcast.core.pojo.item.ItemCatSt;
 import cn.itcast.core.service.ItemCatService;
 import com.alibaba.dubbo.config.annotation.Reference;
+import entity.Result;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,5 +36,27 @@ public class ItemCatController {
     @RequestMapping("findAll")
     public List<ItemCat> findAll(){
         return itemCatService.findAll();
+    }
+
+    @RequestMapping("itemCatst")
+    public List<ItemCatSt> findAllst(){
+        return itemCatService.findAllst();
+    }
+
+    @RequestMapping("findByParentIdst")
+    public List<ItemCatSt> findByParentIdst(Long parentId) throws Exception {
+        return itemCatService.findByParentIdst(parentId,null);
+    }
+
+    /*修改商品状态  审核状态*/
+    @RequestMapping("updateStatusst")
+    public Result updateStatusst(Long[] ids, String status){
+        try {
+            itemCatService.updateStatusst(ids,status);
+            return new Result(true,"修改状态成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,"修改状态失败");
+        }
     }
 }

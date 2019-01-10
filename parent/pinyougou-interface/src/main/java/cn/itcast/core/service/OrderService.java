@@ -12,7 +12,8 @@ public interface OrderService {
     Map<String, Object> search(Map<String, String> searchMap);
 
     void cancleOrder(Long orderId);
-	PageResult search(Integer page, Integer rows, Order order);
+
+    PageResult searchManager(Integer page, Integer rows, Order order);
 
     List creatPic();
 }

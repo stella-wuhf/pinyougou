@@ -155,7 +155,9 @@ public class SpecificationServiceImpl implements SpecificationService {
         //准备条件
         SpecificationStQuery specificationQuery=new SpecificationStQuery();
         SpecificationStQuery.Criteria criteria = specificationQuery.createCriteria();
-        criteria.andSellerIdEqualTo(specificationSt.getSellerId());
+        if (specificationSt.getSellerId()!=null){
+            criteria.andSellerIdEqualTo(specificationSt.getSellerId());
+        }
         if (null!=specificationSt.getStatus()&&!"".equals(specificationSt.getStatus().trim())){
             criteria.andStatusEqualTo(specificationSt.getStatus().trim());
         }
@@ -234,4 +236,17 @@ public class SpecificationServiceImpl implements SpecificationService {
     public List<Map> selectOptionListst(String name) {
         return specificationStDao.selectOptionListst(name);
     }
+
+    @Override
+    public void updateStatusst(Long[] ids, String status) {
+        SpecificationSt specificationSt = new SpecificationSt();
+        specificationSt.setStatus(status);
+        for (Long id : ids) {
+            specificationSt.setId(id);
+            specificationStDao.updateByPrimaryKeySelective(specificationSt);
+        }
+    }
+
+
+
 }

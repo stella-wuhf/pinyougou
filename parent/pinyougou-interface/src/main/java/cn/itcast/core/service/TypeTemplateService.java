@@ -40,4 +40,6 @@ public interface TypeTemplateService {
     void deletest(Long[] ids);
 
     List<TypeTemplateSt> findOptionList(String name);
+
+    void updateStatusst(Long[] ids, String status);
 }
